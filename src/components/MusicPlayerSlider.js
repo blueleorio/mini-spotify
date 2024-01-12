@@ -86,11 +86,6 @@ const TinyText = styled(Typography)({
 export default function MusicPlayerSlider() {
   const theme = useTheme();
 
-  const duration = 200; // seconds
-
-  const [position, setPosition] = React.useState(32);
-  // const [paused, setPaused] = React.useState(false);
-
   const {
     trackList,
     playTrack,
@@ -99,9 +94,34 @@ export default function MusicPlayerSlider() {
     playNextTrack,
     currentTrackIndex,
     currentTrackName,
+    currentTrackDuration,
     currentTrackArtist,
     isPlaying,
   } = useMusicPlayer();
+
+  const duration = Math.round(currentTrackDuration); // seconds
+
+  const [position, setPosition] = React.useState(0);
+  const [paused, setPaused] = React.useState(false);
+
+  React.useEffect(() => {
+    let intervalId;
+
+    if (isPlaying) {
+      intervalId = setInterval(() => {
+        // Update the position every second until the maximum duration
+        setPosition((prevPosition) =>
+          prevPosition < duration ? prevPosition + 1 : prevPosition
+        );
+      }, 1000);
+    }
+
+    return () => clearInterval(intervalId);
+  }, [isPlaying, duration]);
+
+  React.useEffect(() => {
+    setPosition(0);
+  }, [currentTrackIndex]);
 
   function formatDuration(value) {
     const minute = Math.floor(value / 60);
@@ -151,7 +171,9 @@ export default function MusicPlayerSlider() {
           min={0}
           step={1}
           max={duration}
-          onChange={(_, value) => setPosition(value)}
+          // onChange={(_, value) => setPosition(value)}
+          disabled={!isPlaying}
+          readOnly
           sx={{
             color: theme.palette.mode === "dark" ? "#fff" : "rgba(0,0,0,0.87)",
             height: 4,

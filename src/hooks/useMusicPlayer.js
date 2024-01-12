@@ -61,6 +61,9 @@ const useMusicPlayer = () => {
     currentTrackArtist:
       state.currentTrackIndex !== null &&
       state.tracks[state.currentTrackIndex].artist,
+    currentTrackDuration:
+      state.currentTrackIndex !== null &&
+      state.tracks[state.currentTrackIndex].duration,
     trackList: state.tracks,
     isPlaying: state.isPlaying,
     currentTrackIndex: state.currentTrackIndex,
