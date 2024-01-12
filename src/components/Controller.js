@@ -2,7 +2,7 @@ import React from "react";
 import useMusicPlayer from "../hooks/useMusicPlayer";
 import { TrackList } from "./TrackList";
 
-const Controller = () => {
+export const Controller = () => {
   const {
     togglePlay,
     playPreviousTrack,
@@ -14,9 +14,6 @@ const Controller = () => {
   return (
     <div>
       <h3>Now Playing: {currentTrackName || "No track selected"}</h3>
-
-      <TrackList />
-
       <div>
         <button onClick={playPreviousTrack}>Previous</button>
         <button onClick={togglePlay}>{isPlaying ? "Pause" : "Play"}</button>
@@ -25,5 +22,3 @@ const Controller = () => {
     </div>
   );
 };
-
-export default Controller;
