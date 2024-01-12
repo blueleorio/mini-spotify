@@ -1,14 +1,22 @@
+import React from "react";
 import useMusicPlayer from "../hooks/useMusicPlayer";
+
 export const TrackList = () => {
-  const { trackList, currentTrackName, playTrack, isPlaying } =
+  const { trackList, playTrack, currentTrackIndex, isPlaying } =
     useMusicPlayer();
 
   return (
     <>
       {trackList.map((track, index) => (
-        // ( Surprise us with your code here)
-
-        <div className="song-title">{track.name}</div>
+        <div
+          key={index}
+          className={`song-title ${
+            currentTrackIndex === index && isPlaying ? "active" : ""
+          }`}
+          onClick={() => playTrack(index)}
+        >
+          {track.name}
+        </div>
       ))}
     </>
   );
