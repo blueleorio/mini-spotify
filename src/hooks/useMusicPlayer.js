@@ -1,13 +1,15 @@
-import { useContext } from "react";
+import { useContext, useRef, useEffect, useState } from "react";
 import { MusicPlayerContext } from "../contexts/MusicPlayerContext";
 
 const useMusicPlayer = () => {
-  const { state, setState } = useContext(MusicPlayerContext);
+  const { state, setState, setVolume, setCurrentTime } =
+    useContext(MusicPlayerContext);
+
+  const audioPlayerRef = useRef(null);
 
   // Play a specific track
   function playTrack(index) {
     if (index === state.currentTrackIndex) {
-      console.log("clicked");
       togglePlay();
     } else {
       state.audioPlayer.pause();
@@ -19,10 +21,6 @@ const useMusicPlayer = () => {
         isPlaying: true,
       }));
     }
-    console.log(
-      state.currentTrackIndex !== null &&
-        state.tracks[state.currentTrackIndex].name
-    );
   }
 
   // Toggle play or pause
@@ -61,6 +59,9 @@ const useMusicPlayer = () => {
     currentTrackIndex: state.currentTrackIndex,
     playPreviousTrack,
     playNextTrack,
+    setVolume,
+    setCurrentTime,
+    audioPlayerRef,
   };
 };
 

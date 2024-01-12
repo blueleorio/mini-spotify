@@ -23,12 +23,25 @@ const defaultValues = {
   ],
   currentTrackIndex: null,
   isPlaying: false,
+  volume: 0.3,
+  currentTime: 0,
 };
 
 const MusicPlayerProvider = ({ children }) => {
   const [state, setState] = useState(defaultValues);
+  const setVolume = (volume) => {
+    state.audioPlayer.volume = volume;
+    setState((state) => ({ ...state, volume }));
+  };
+
+  const setCurrentTime = (time) => {
+    state.audioPlayer.currentTime = time;
+    setState((state) => ({ ...state, currentTime: time }));
+  };
   return (
-    <MusicPlayerContext.Provider value={{ state, setState }}>
+    <MusicPlayerContext.Provider
+      value={{ state, setState, setVolume, setCurrentTime }}
+    >
       {children}
     </MusicPlayerContext.Provider>
   );

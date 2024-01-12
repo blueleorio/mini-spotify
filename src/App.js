@@ -1,17 +1,16 @@
-import logo from "./logo.svg";
-import "./App.css";
-
+import React from "react";
 import { MusicPlayerProvider } from "./contexts/MusicPlayerContext";
 import { TrackList } from "./components/TrackList";
 import { Controller } from "./components/Controller";
-// import MusicPlayerSlider from "./components/MusicPlayerSlider";
+import MusicPlayerSlider from "./components/MusicPlayerSlider";
+
 const App = () => {
   return (
     <MusicPlayerProvider>
       <div className="container">
         <TrackList />
         <Controller />
-        {/* <MusicPlayerSlider /> */}
+        <MusicPlayerSlider />
       </div>
     </MusicPlayerProvider>
   );
