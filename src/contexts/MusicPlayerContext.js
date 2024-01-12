@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Track1 from "./track1.mp3";
-import Track2 from "./track2.mp3";
-import Track3 from "./track3.mp3";
+import Track1 from "../euphoric-electric-groove.mp3";
+import Track2 from "../see-you-soon.mp3";
+import Track3 from "../whip.mp3";
 
 const MusicPlayerContext = React.createContext();
 
