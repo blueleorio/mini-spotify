@@ -16,6 +16,8 @@ import VolumeDownRounded from "@mui/icons-material/VolumeDownRounded";
 import useMusicPlayer from "../hooks/useMusicPlayer";
 import { TrackList } from "./TrackList";
 
+import bird from "./cover.jpg";
+
 const WallPaper = styled("div")({
   position: "absolute",
   width: "100%",
@@ -87,7 +89,7 @@ export default function MusicPlayerSlider() {
   const duration = 200; // seconds
 
   const [position, setPosition] = React.useState(32);
-  const [paused, setPaused] = React.useState(false);
+  // const [paused, setPaused] = React.useState(false);
 
   const {
     trackList,
@@ -124,10 +126,7 @@ export default function MusicPlayerSlider() {
       <Widget>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <CoverImage>
-            <img
-              alt="can't win - Chilling Sunday"
-              src="/static/images/sliders/chilling-sunday.jpg"
-            />
+            <img alt="coverImg" src={bird} />
           </CoverImage>
           <Box sx={{ ml: 1.5, minWidth: 0 }}>
             <Typography
@@ -135,13 +134,13 @@ export default function MusicPlayerSlider() {
               color="text.secondary"
               fontWeight={500}
             >
-              PixaBay.com
+              Credit to PixaBay.com
             </Typography>
             <Typography noWrap>
-              <b>{currentTrackName}</b>
+              <b>{currentTrackName || "No track selected"}</b>
             </Typography>
             <Typography noWrap letterSpacing={-0.25}>
-              {currentTrackArtist}
+              {currentTrackArtist || ""}
             </Typography>
           </Box>
         </Box>
