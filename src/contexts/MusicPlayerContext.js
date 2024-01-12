@@ -9,17 +9,17 @@ const defaultValues = {
   audioPlayer: new Audio(),
   tracks: [
     {
-      name: "Groove Dan Toc Giat Dien",
+      name: "Nhạc Sàn Xuyên Biên Giới",
       artist: "Top Flow Production",
       file: Track1,
     },
     {
-      name: "Nhin Em Som",
+      name: "Sớm Mai Thấy Em",
       artist: "LemonMusicStudio",
       file: Track2,
     },
     {
-      name: "Tet Vao Mong",
+      name: "Tét Mông",
       artist: "Prazkhanal",
       file: Track3,
     },

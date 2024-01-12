@@ -199,14 +199,14 @@ export default function MusicPlayerSlider() {
             mt: -1,
           }}
         >
-          <IconButton aria-label="previous song">
+          <IconButton aria-label="previous song" onClick={playPreviousTrack}>
             <FastRewindRounded fontSize="large" htmlColor={mainIconColor} />
           </IconButton>
           <IconButton
             aria-label={paused ? "play" : "pause"}
-            onClick={() => setPaused(!paused)}
+            onClick={togglePlay}
           >
-            {paused ? (
+            {!isPlaying ? (
               <PlayArrowRounded
                 sx={{ fontSize: "3rem" }}
                 htmlColor={mainIconColor}
@@ -218,7 +218,7 @@ export default function MusicPlayerSlider() {
               />
             )}
           </IconButton>
-          <IconButton aria-label="next song">
+          <IconButton aria-label="next song" onClick={playNextTrack}>
             <FastForwardRounded fontSize="large" htmlColor={mainIconColor} />
           </IconButton>
         </Box>

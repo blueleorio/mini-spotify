@@ -9,8 +9,6 @@ const App = () => {
     <MusicPlayerProvider>
       <div className="container">
         <MusicPlayerSlider />
-        <TrackList />
-        <Controller />
       </div>
     </MusicPlayerProvider>
   );
