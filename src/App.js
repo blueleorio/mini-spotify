@@ -3,7 +3,7 @@ import "./App.css";
 
 import { MusicPlayerProvider } from "./contexts/MusicPlayerContext";
 import { TrackList } from "./components/TrackList";
-
+import { Controller } from "./components/Controller";
 const App = () => {
   return (
     <MusicPlayerProvider>

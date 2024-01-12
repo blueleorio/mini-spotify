@@ -9,15 +9,15 @@ const defaultValues = {
   audioPlayer: new Audio(),
   tracks: [
     {
-      name: "Cold Gin - Jazz",
+      name: "Groove Dan Toc Giat Dien",
       file: Track1,
     },
     {
-      name: "heaven's On Fire - Jazz",
+      name: "Nhin Em Som",
       file: Track2,
     },
     {
-      name: "Beth - Jazz",
+      name: "Tet Vao Mong",
       file: Track3,
     },
   ],
