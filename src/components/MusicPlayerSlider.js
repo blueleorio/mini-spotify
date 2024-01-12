@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -11,6 +12,9 @@ import FastForwardRounded from "@mui/icons-material/FastForwardRounded";
 import FastRewindRounded from "@mui/icons-material/FastRewindRounded";
 import VolumeUpRounded from "@mui/icons-material/VolumeUpRounded";
 import VolumeDownRounded from "@mui/icons-material/VolumeDownRounded";
+
+import useMusicPlayer from "../hooks/useMusicPlayer";
+import { TrackList } from "./TrackList";
 
 const WallPaper = styled("div")({
   position: "absolute",
@@ -79,19 +83,44 @@ const TinyText = styled(Typography)({
 
 export default function MusicPlayerSlider() {
   const theme = useTheme();
+
   const duration = 200; // seconds
+
   const [position, setPosition] = React.useState(32);
   const [paused, setPaused] = React.useState(false);
+
+  const {
+    trackList,
+    playTrack,
+    togglePlay,
+    playPreviousTrack,
+    playNextTrack,
+    currentTrackIndex,
+    currentTrackName,
+    currentTrackArtist,
+    isPlaying,
+  } = useMusicPlayer();
+
   function formatDuration(value) {
     const minute = Math.floor(value / 60);
     const secondLeft = value - minute * 60;
     return `${minute}:${secondLeft < 10 ? `0${secondLeft}` : secondLeft}`;
   }
+
   const mainIconColor = theme.palette.mode === "dark" ? "#fff" : "#000";
+
   const lightIconColor =
     theme.palette.mode === "dark" ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.4)";
+
   return (
-    <Box sx={{ width: "100%", overflow: "hidden" }}>
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100vh",
+      }}
+    >
       <Widget>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <CoverImage>
@@ -106,13 +135,13 @@ export default function MusicPlayerSlider() {
               color="text.secondary"
               fontWeight={500}
             >
-              Jun Pulse
+              PixaBay.com
             </Typography>
             <Typography noWrap>
-              <b>คนเก่าเขาทำไว้ดี (Can&apos;t win)</b>
+              <b>{currentTrackName}</b>
             </Typography>
             <Typography noWrap letterSpacing={-0.25}>
-              Chilling Sunday &mdash; คนเก่าเขาทำไว้ดี
+              {currentTrackArtist}
             </Typography>
           </Box>
         </Box>
@@ -223,6 +252,14 @@ export default function MusicPlayerSlider() {
             }}
           />
           <VolumeUpRounded htmlColor={lightIconColor} />
+        </Stack>
+        <Stack
+          spacing={2}
+          direction="row"
+          sx={{ mb: 1, px: 1 }}
+          alignItems="center"
+        >
+          <TrackList />
         </Stack>
       </Widget>
       <WallPaper />

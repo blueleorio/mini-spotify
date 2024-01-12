@@ -8,9 +8,9 @@ const App = () => {
   return (
     <MusicPlayerProvider>
       <div className="container">
+        <MusicPlayerSlider />
         <TrackList />
         <Controller />
-        <MusicPlayerSlider />
       </div>
     </MusicPlayerProvider>
   );
