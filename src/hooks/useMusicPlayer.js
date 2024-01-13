@@ -52,6 +52,13 @@ const useMusicPlayer = () => {
     }
   }
 
+  function setVolume(volume) {
+    if (state.audioPlayer) {
+      state.audioPlayer.volume = volume;
+      setState((state) => ({ ...state, volume }));
+    }
+  }
+
   return {
     playTrack,
     togglePlay,
@@ -69,6 +76,8 @@ const useMusicPlayer = () => {
     currentTrackIndex: state.currentTrackIndex,
     playPreviousTrack,
     playNextTrack,
+    setVolume,
+    volume: state.volume,
   };
 };
 

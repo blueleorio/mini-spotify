@@ -87,8 +87,6 @@ export default function MusicPlayerSlider() {
   const theme = useTheme();
 
   const {
-    trackList,
-    playTrack,
     togglePlay,
     playPreviousTrack,
     playNextTrack,
@@ -97,6 +95,8 @@ export default function MusicPlayerSlider() {
     currentTrackDuration,
     currentTrackArtist,
     isPlaying,
+    setVolume, // Added setVolume from useMusicPlayer hook
+    volume,
   } = useMusicPlayer();
 
   const duration = Math.round(currentTrackDuration); // seconds
@@ -118,6 +118,15 @@ export default function MusicPlayerSlider() {
 
     return () => clearInterval(intervalId);
   }, [isPlaying, duration]);
+
+  const audioPlayerRef = React.useRef(null);
+
+  // Synchronize volume when changing tracks
+  React.useEffect(() => {
+    if (audioPlayerRef.current) {
+      audioPlayerRef.current.volume = volume;
+    }
+  }, [volume]);
 
   React.useEffect(() => {
     setPosition(0);
@@ -252,7 +261,8 @@ export default function MusicPlayerSlider() {
           <VolumeDownRounded htmlColor={lightIconColor} />
           <Slider
             aria-label="Volume"
-            defaultValue={30}
+            value={volume * 100} // Ensure the volume is in the range [0, 100]
+            onChange={(_, value) => setVolume(value / 100)} // Convert value to the range [0, 1] for setVolume
             sx={{
               color:
                 theme.palette.mode === "dark" ? "#fff" : "rgba(0,0,0,0.87)",

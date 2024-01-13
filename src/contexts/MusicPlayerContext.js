@@ -29,7 +29,7 @@ const defaultValues = {
   ],
   currentTrackIndex: null,
   isPlaying: false,
-  volume: 0.3,
+  volume: 1,
   currentTime: 0,
 };
 
