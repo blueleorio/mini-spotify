@@ -15,7 +15,7 @@ import VolumeDownRounded from "@mui/icons-material/VolumeDownRounded";
 
 import useMusicPlayer from "../hooks/useMusicPlayer";
 import { TrackList } from "./TrackList";
-
+// import BackgroundVisualizer from "./BackgroundVisualizer";
 import bird from "./cover.jpg";
 
 const WallPaper = styled("div")({
@@ -152,6 +152,8 @@ export default function MusicPlayerSlider() {
         height: "100vh",
       }}
     >
+      {/* <BackgroundVisualizer /> */}
+
       <Widget>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <CoverImage>
