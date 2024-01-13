@@ -152,8 +152,6 @@ export default function MusicPlayerSlider() {
         height: "100vh",
       }}
     >
-      {/* <BackgroundVisualizer /> */}
-
       <Widget>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <CoverImage>
