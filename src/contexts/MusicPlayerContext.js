@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Track1 from "../euphoric-electric-groove.mp3";
-import Track2 from "../see-you-soon.mp3";
-import Track3 from "../whip.mp3";
+import Track1 from "../The Strokes - Why Are Sundays So Depressing.mp3";
+import Track2 from "../The Strokes - Eternal Summer.mp3";
+import Track3 from "../The Adults Are Talking - The Strokes.mp3";
 
 const MusicPlayerContext = React.createContext();
 
@@ -9,20 +9,20 @@ const defaultValues = {
   audioPlayer: new Audio(),
   tracks: [
     {
-      name: "Nhạc Sàn Xuyên Biên Giới",
-      artist: "Top Flow Production",
+      name: "Why Are Sundays So Depressing",
+      artist: "The Strokes",
       file: Track1,
       duration: 0,
     },
     {
-      name: "Sớm Mai Thấy Em",
-      artist: "LemonMusicStudio",
+      name: "Eternal Summer",
+      artist: "The Strokes",
       file: Track2,
       duration: 0,
     },
     {
-      name: "Tét Mông",
-      artist: "Prazkhanal",
+      name: "The Adults Are Talking",
+      artist: "The Strokes",
       file: Track3,
       duration: 0,
     },
