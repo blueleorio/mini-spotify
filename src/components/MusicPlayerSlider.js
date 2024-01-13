@@ -284,14 +284,7 @@ export default function MusicPlayerSlider() {
           />
           <VolumeUpRounded htmlColor={lightIconColor} />
         </Stack>
-        <Stack
-          spacing={2}
-          direction="row"
-          sx={{ mb: 1, px: 1 }}
-          alignItems="center"
-        >
-          <TrackList />
-        </Stack>
+        <TrackList />
       </Widget>
       <WallPaper />
     </Box>

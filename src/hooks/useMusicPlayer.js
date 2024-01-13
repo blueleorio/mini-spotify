@@ -27,12 +27,26 @@ const useMusicPlayer = () => {
 
   // Toggle play or pause
   function togglePlay() {
-    if (state.isPlaying) {
+    if (state.currentTrackIndex !== null) {
+      // If there is a selected track, toggle play/pause
+      if (state.isPlaying) {
+        state.audioPlayer.pause();
+      } else {
+        state.audioPlayer.play();
+      }
+      setState((state) => ({ ...state, isPlaying: !state.isPlaying }));
+    } else if (state.tracks.length > 0) {
+      // If no track is selected, play the first track
+      const firstTrack = state.tracks[0];
       state.audioPlayer.pause();
-    } else {
+      state.audioPlayer = new Audio(firstTrack.file);
       state.audioPlayer.play();
+      setState((state) => ({
+        ...state,
+        currentTrackIndex: 0,
+        isPlaying: true,
+      }));
     }
-    setState((state) => ({ ...state, isPlaying: !state.isPlaying }));
   }
 
   // Play the previous track in the tracks array
