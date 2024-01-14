@@ -27,7 +27,8 @@ const WallPaper = styled("div")(({ theme, background }) => ({
   overflow: "hidden",
   // background: "linear-gradient(rgb(255, 38, 142) 0%, rgb(255, 105, 79) 100%)",
   background: background,
-  transition: "all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s",
+  // transition: "all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s",
+  transition: "all 2000ms cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s",
   "&::before": {
     content: '""',
     width: "140%",

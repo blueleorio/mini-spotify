@@ -8,17 +8,19 @@ const useMusicPlayer = () => {
     console.log("Effect is running...");
 
     let intervalId;
+    let startTime = Date.now();
 
     // Start updating background when a track is played
     if (state.isPlaying) {
       intervalId = setInterval(() => {
         // Update background color logic here
-        const color1 = interpolateColor();
-        const color2 = interpolateColor();
+        const progress = (Date.now() - startTime) / 2000; // 2000ms for one full oscillation
+        const color1 = interpolateColor(progress);
+        const color2 = interpolateColor(progress + 0.5); // Offset by 0.5 for a smooth transition
         const background = `linear-gradient(${color1} 0%, ${color2} 100%)`;
 
         setState((prev) => ({ ...prev, background }));
-      }, 1000);
+      }, 100);
     }
 
     // Cleanup when no track is played or component unmounts
@@ -28,11 +30,17 @@ const useMusicPlayer = () => {
     };
   }, [state.isPlaying, setState]);
 
-  // Function to interpolate color
-  function interpolateColor() {
-    return `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
-      Math.random() * 256
-    )}, ${Math.floor(Math.random() * 256)})`;
+  // Function to interpolate color using a sinusoidal function
+  function interpolateColor(progress) {
+    const red = Math.floor(Math.sin(progress * Math.PI * 2) * 127 + 128);
+    const green = Math.floor(
+      Math.sin(progress * Math.PI * 2 + (2 / 3) * Math.PI) * 127 + 128
+    );
+    const blue = Math.floor(
+      Math.sin(progress * Math.PI * 2 + (4 / 3) * Math.PI) * 127 + 128
+    );
+
+    return `rgb(${red}, ${green}, ${blue})`;
   }
 
   // Play a specific track
