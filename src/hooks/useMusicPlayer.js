@@ -13,12 +13,8 @@ const useMusicPlayer = () => {
     if (state.isPlaying) {
       intervalId = setInterval(() => {
         // Update background color logic here
-        const color1 = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
-          Math.random() * 256
-        )}, ${Math.floor(Math.random() * 256)})`;
-        const color2 = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
-          Math.random() * 256
-        )}, ${Math.floor(Math.random() * 256)})`;
+        const color1 = interpolateColor();
+        const color2 = interpolateColor();
         const background = `linear-gradient(${color1} 0%, ${color2} 100%)`;
 
         setState((prev) => ({ ...prev, background }));
@@ -31,6 +27,13 @@ const useMusicPlayer = () => {
       setState((prev) => ({ ...prev, background: null }));
     };
   }, [state.isPlaying, setState]);
+
+  // Function to interpolate color
+  function interpolateColor() {
+    return `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
+      Math.random() * 256
+    )}, ${Math.floor(Math.random() * 256)})`;
+  }
 
   // Play a specific track
   function playTrack(index) {
