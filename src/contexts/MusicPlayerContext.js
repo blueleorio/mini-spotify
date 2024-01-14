@@ -64,7 +64,7 @@ const MusicPlayerProvider = ({ children }) => {
     };
 
     loadDurations();
-  }, []);
+  }, [state.tracks]);
 
   return (
     <MusicPlayerContext.Provider value={{ state, setState }}>
