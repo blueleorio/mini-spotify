@@ -15,17 +15,18 @@ import VolumeDownRounded from "@mui/icons-material/VolumeDownRounded";
 
 import useMusicPlayer from "../hooks/useMusicPlayer";
 import { TrackList } from "./TrackList";
-// import BackgroundVisualizer from "./BackgroundVisualizer";
+
 import bird from "./cover.jpg";
 
-const WallPaper = styled("div")({
+const WallPaper = styled("div")(({ theme, background }) => ({
   position: "absolute",
   width: "100%",
   height: "100%",
   top: 0,
   left: 0,
   overflow: "hidden",
-  background: "linear-gradient(rgb(255, 38, 142) 0%, rgb(255, 105, 79) 100%)",
+  // background: "linear-gradient(rgb(255, 38, 142) 0%, rgb(255, 105, 79) 100%)",
+  background: background,
   transition: "all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s",
   "&::before": {
     content: '""',
@@ -48,12 +49,12 @@ const WallPaper = styled("div")({
       "radial-gradient(at center center, rgb(247, 237, 225) 0%, rgba(247, 237, 225, 0) 70%)",
     transform: "rotate(30deg)",
   },
-});
+}));
 
 const Widget = styled("div")(({ theme }) => ({
   padding: 16,
   borderRadius: 16,
-  width: 343,
+  width: 400,
   maxWidth: "100%",
   margin: "auto",
   position: "relative",
@@ -84,6 +85,7 @@ const TinyText = styled(Typography)({
 });
 
 export default function MusicPlayerSlider() {
+  // console.log("Component re-rendered.");
   const theme = useTheme();
 
   const {
@@ -97,6 +99,7 @@ export default function MusicPlayerSlider() {
     isPlaying,
     setVolume, // Added setVolume from useMusicPlayer hook
     volume,
+    background,
   } = useMusicPlayer();
 
   const duration = Math.round(currentTrackDuration); // seconds
@@ -163,12 +166,12 @@ export default function MusicPlayerSlider() {
               color="text.secondary"
               fontWeight={500}
             >
-              Credit to PixaBay.com
+              Sự Bất Bình Thường Mới
             </Typography>
             <Typography noWrap>
               <b>{currentTrackName || "No track selected"}</b>
             </Typography>
-            <Typography noWrap letterSpacing={-0.25}>
+            <Typography noWrap letterSpacing={0.25}>
               {currentTrackArtist || ""}
             </Typography>
           </Box>
@@ -286,7 +289,7 @@ export default function MusicPlayerSlider() {
         </Stack>
         <TrackList />
       </Widget>
-      <WallPaper />
+      <WallPaper background={background} />
     </Box>
   );
 }

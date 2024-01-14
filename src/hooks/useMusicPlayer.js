@@ -1,8 +1,36 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { MusicPlayerContext } from "../contexts/MusicPlayerContext";
 
 const useMusicPlayer = () => {
   const { state, setState } = useContext(MusicPlayerContext);
+
+  useEffect(() => {
+    console.log("Effect is running...");
+
+    let intervalId;
+
+    // Start updating background when a track is played
+    if (state.isPlaying) {
+      intervalId = setInterval(() => {
+        // Update background color logic here
+        const color1 = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
+          Math.random() * 256
+        )}, ${Math.floor(Math.random() * 256)})`;
+        const color2 = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(
+          Math.random() * 256
+        )}, ${Math.floor(Math.random() * 256)})`;
+        const background = `linear-gradient(${color1} 0%, ${color2} 100%)`;
+
+        setState((prev) => ({ ...prev, background }));
+      }, 1000);
+    }
+
+    // Cleanup when no track is played or component unmounts
+    return () => {
+      clearInterval(intervalId);
+      setState((prev) => ({ ...prev, background: null }));
+    };
+  }, [state.isPlaying, setState]);
 
   // Play a specific track
   function playTrack(index) {
@@ -92,6 +120,7 @@ const useMusicPlayer = () => {
     playNextTrack,
     setVolume,
     volume: state.volume,
+    background: state.background,
   };
 };
 

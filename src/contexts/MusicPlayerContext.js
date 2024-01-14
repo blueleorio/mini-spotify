@@ -9,20 +9,20 @@ const defaultValues = {
   audioPlayer: new Audio(),
   tracks: [
     {
-      name: "Why Are Sundays So Depressing",
-      artist: "The Strokes",
+      name: "Tại Sao Chủ Nhật Thật Là Trầm Mặc",
+      artist: "Các Cú Chọt",
       file: Track1,
       duration: 0,
     },
     {
-      name: "Eternal Summer",
-      artist: "The Strokes",
+      name: "Mùa Hạ Vĩnh Hằng",
+      artist: "Các Cú Chọt",
       file: Track2,
       duration: 0,
     },
     {
-      name: "The Adults Are Talking",
-      artist: "The Strokes",
+      name: "Khi Người Lớn Chửi Nhau",
+      artist: "Các Cú Chọt",
       file: Track3,
       duration: 0,
     },
