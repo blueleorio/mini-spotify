@@ -106,7 +106,6 @@ export default function MusicPlayerSlider() {
   const duration = Math.round(currentTrackDuration); // seconds
 
   const [position, setPosition] = React.useState(0);
-  const [paused, setPaused] = React.useState(false);
 
   React.useEffect(() => {
     let intervalId;
@@ -237,7 +236,7 @@ export default function MusicPlayerSlider() {
             <FastRewindRounded fontSize="large" htmlColor={mainIconColor} />
           </IconButton>
           <IconButton
-            aria-label={paused ? "play" : "pause"}
+            aria-label={isPlaying ? "play" : "pause"}
             onClick={togglePlay}
           >
             {!isPlaying ? (
